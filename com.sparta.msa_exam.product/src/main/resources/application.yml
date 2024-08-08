@@ -7,7 +7,7 @@ spring:
     password: Placebo4114@@!
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 
 
 server:
