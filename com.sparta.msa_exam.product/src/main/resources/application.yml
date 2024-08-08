@@ -1,6 +1,14 @@
 spring:
   application:
     name: product-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/ch1project
+    username: root
+    password: Placebo4114@@!
+  jpa:
+    hibernate:
+      ddl-auto: update
+
 
 server:
   port: 19093
@@ -8,3 +16,4 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:19090/eureka/
+
