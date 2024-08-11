@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/ch1project
+    username: root
+    password: Placebo4114@@!
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+
+server:
+  port: 19095
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:19090/eureka/
