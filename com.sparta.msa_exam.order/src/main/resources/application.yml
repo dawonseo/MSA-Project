@@ -5,9 +5,9 @@ spring:
   application:
     name: order-service
   datasource:
-    url: jdbc:mysql://localhost:3306/ch1project
+    url: jdbc:mysql://localhost:3306/msa_exam
     username: root
-    password: Placebo4114@@!
+    password: Database
   jpa:
     hibernate:
       ddl-auto: create
