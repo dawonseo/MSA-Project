@@ -5,15 +5,19 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import javax.crypto.SecretKey;
 
+@Slf4j
+@Component
 public class LocalJwtAuthenticationFilter implements GlobalFilter {
 
     @Value("${service.jwt.secret-key}")
@@ -21,8 +25,10 @@ public class LocalJwtAuthenticationFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        log.info(">>> 인가 filter 진입");
         String path = exchange.getRequest().getURI().getPath();
         if (path.equals("/auth/signIn")) {
+            log.info(">>> signIn");
             return chain.filter(exchange);
         }
         String token = extractToken(exchange);

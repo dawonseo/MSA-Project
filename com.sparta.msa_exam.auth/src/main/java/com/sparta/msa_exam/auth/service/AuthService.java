@@ -13,12 +13,12 @@ import java.util.Date;
 @Service
 public class AuthService {
 
-    @Value("${spring.jwt.access-expiration}")
+    @Value("${service.jwt.access-expiration}")
     private Long accessExpiration;
 
     private final SecretKey secretKey;
 
-    public AuthService(@Value("${service.jwt.secret-key") String secretKey) {
+    public AuthService(@Value("${service.jwt.secret-key}") String secretKey) {
         this.secretKey = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(secretKey));
     }
 
@@ -27,7 +27,7 @@ public class AuthService {
                 .claim("user_id", user_id)
                 .issuedAt(new Date(System.currentTimeMillis())) // 발행 날짜
                 .expiration(new Date(System.currentTimeMillis() + accessExpiration)) // 만료 날짜
-                .signWith(secretKey, SignatureAlgorithm.HS512) // 디코딩된 secretKey를 사용하여 알고리즘 서명
+                .signWith(secretKey, SignatureAlgorithm.HS512)
                 .compact();
     }
 }
